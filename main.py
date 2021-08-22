@@ -1,6 +1,7 @@
 import sys
 import pygame
 from pygame.locals import QUIT
+import random
 
 pygame.init()
 #ウィンドウの大きさ
@@ -18,18 +19,19 @@ def main():
 
         SURFACE.fill((0, 0, 0))
 
-        #白 vertical
-        for xpos in range(0, 400, 25):
-            pygame.draw.line(SURFACE, 0xFFFFFF, (xpos, 0), (xpos, 300))
+        pointlist = []
 
-        #白 horizontal
-        for ypos in range(0, 300, 25):
-            pygame.draw.line(SURFACE, 0xFFFFFF, (0, ypos), (400, ypos))
+        for _ in range(10):
+            xpos = random.randint(0, 400)
+            ypos = random.randint(0, 300)
+            pointlist.append((xpos, ypos))
+
+        pygame.draw.lines(SURFACE, (255, 255, 255), True, pointlist, 5)
 
         pygame.display.update()
 
         # 一定のフレームレートにする
-        FPSCLOCK.tick(60)
+        FPSCLOCK.tick(3)
 
 if __name__ == '__main__':
     main()

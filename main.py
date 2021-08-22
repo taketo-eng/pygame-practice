@@ -1,4 +1,3 @@
-from math import sin, cos, radians
 import sys
 import pygame
 from pygame.locals import QUIT
@@ -11,23 +10,17 @@ FPSCLOCK = pygame.time.Clock()
 
 def main():
     ''' main routine '''
+    logo = pygame.image.load('images/ball.png')
+
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-        SURFACE.fill((0, 0, 0))
+        SURFACE.fill((255, 255, 255))
 
-        pointlist0, pointlist1 = [], []
-
-        for theta in range(0, 360, 72):
-            rad = radians(theta)
-            pointlist0.append((cos(rad)*100 + 100, sin(rad)*100 + 150))
-            pointlist1.append((cos(rad)*100 + 300, sin(rad)*100 + 150))
-
-        pygame.draw.lines(SURFACE, (255, 255, 255), True, pointlist0)
-        pygame.draw.polygon(SURFACE, (255, 255, 255), pointlist1)
+        SURFACE.blit(logo, (20, 50))
 
 
         pygame.display.update()

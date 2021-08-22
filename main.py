@@ -4,7 +4,7 @@ from pygame.locals import QUIT, Rect
 
 pygame.init()
 #ウィンドウの大きさ
-SURFACE = pygame.display.set_mode((400, 300))
+SURFACE = pygame.display.set_mode((400, 250))
 # 一定のフレームレートにする (オブジェクト生成)
 FPSCLOCK = pygame.time.Clock()
 
@@ -18,20 +18,13 @@ def main():
 
         SURFACE.fill((255, 255, 255))
 
-        #赤(塗りつぶし)
-        pygame.draw.circle(SURFACE, (255, 0, 0), (50, 50), 20)
-
         #赤
-        pygame.draw.circle(SURFACE, (255, 0, 0), (150, 50), 20, 10)
+        pygame.draw.ellipse(SURFACE, (255, 0, 0), (50, 50, 140, 60))
+        pygame.draw.ellipse(SURFACE, (255, 0, 0), (250, 30, 90, 90))
 
-        #緑 radius = 10
-        pygame.draw.circle(SURFACE, (0, 255, 0), (50, 150), 10)
-
-        #緑 radius = 20
-        pygame.draw.circle(SURFACE, (0, 255, 0), (150, 150), 20)
-
-        # 緑 radius = 30
-        pygame.draw.circle(SURFACE, (0, 255, 0), (250, 150), 30)
+        #緑
+        pygame.draw.ellipse(SURFACE, (0,255, 0), (50, 150, 110, 60), 5)
+        pygame.draw.ellipse(SURFACE, (0, 255, 0), ((250, 130), (90, 90)), 20)
 
         pygame.display.update()
 

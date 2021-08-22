@@ -1,10 +1,10 @@
 import sys
 import pygame
-from pygame.locals import QUIT, Rect
+from pygame.locals import QUIT
 
 pygame.init()
 #ウィンドウの大きさ
-SURFACE = pygame.display.set_mode((400, 250))
+SURFACE = pygame.display.set_mode((400, 300))
 # 一定のフレームレートにする (オブジェクト生成)
 FPSCLOCK = pygame.time.Clock()
 
@@ -16,15 +16,15 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        SURFACE.fill((255, 255, 255))
+        SURFACE.fill((0, 0, 0))
 
-        #赤
-        pygame.draw.ellipse(SURFACE, (255, 0, 0), (50, 50, 140, 60))
-        pygame.draw.ellipse(SURFACE, (255, 0, 0), (250, 30, 90, 90))
+        #白 vertical
+        for xpos in range(0, 400, 25):
+            pygame.draw.line(SURFACE, 0xFFFFFF, (xpos, 0), (xpos, 300))
 
-        #緑
-        pygame.draw.ellipse(SURFACE, (0,255, 0), (50, 150, 110, 60), 5)
-        pygame.draw.ellipse(SURFACE, (0, 255, 0), ((250, 130), (90, 90)), 20)
+        #白 horizontal
+        for ypos in range(0, 300, 25):
+            pygame.draw.line(SURFACE, 0xFFFFFF, (0, ypos), (400, ypos))
 
         pygame.display.update()
 

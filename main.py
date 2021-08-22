@@ -9,6 +9,9 @@ SURFACE = pygame.display.set_mode((400, 300))
 #画面の色 RGB
 s_colour = (0,0,0)
 
+# 一定のフレームレートにする (オブジェクト生成)
+FPSCLOCK = pygame.time.Clock()
+
 def main():
     ''' main routine '''
     # font
@@ -28,6 +31,9 @@ def main():
         )
         SURFACE.blit(count_image, (50, 50))
         pygame.display.update()
+
+        # 一定のフレームレートにする
+        FPSCLOCK.tick(60)
 
 if __name__ == '__main__':
     main()

@@ -1,35 +1,40 @@
 import sys
 import pygame
-from pygame.locals import QUIT
+from pygame.locals import QUIT, Rect
 
 pygame.init()
 #ウィンドウの大きさ
 SURFACE = pygame.display.set_mode((400, 300))
-
-#画面の色 RGB
-s_colour = (0,0,0)
-
 # 一定のフレームレートにする (オブジェクト生成)
 FPSCLOCK = pygame.time.Clock()
 
 def main():
     ''' main routine '''
-    # font
-    sysfont = pygame.font.SysFont(None, 36)
-    counter = 0
-
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-        counter += 1
-        SURFACE.fill(s_colour)
-        count_image = sysfont.render(
-            "count is {}".format(counter), True, (255, 255, 255)
-        )
-        SURFACE.blit(count_image, (50, 50))
+        SURFACE.fill((255, 255, 255))
+
+        #赤(塗りつぶし)
+        pygame.draw.rect(SURFACE, (255, 0, 0), (10, 20, 100, 50))
+
+        #赤
+        pygame.draw.rect(SURFACE, (0, 255, 0), ((100, 80), (80, 50)))
+
+        #緑
+        pygame.draw.rect(SURFACE, (0, 255, 0), ((100, 80), (80, 50)))
+
+        #青
+        rect0 = Rect(200, 60, 140, 80)
+        pygame.draw.rect(SURFACE, (0, 0, 255), rect0)
+
+        #黄
+        rect1 = Rect((30, 160), (100, 50))
+        pygame.draw.rect(SURFACE, (255, 255, 0), rect1)
+        
         pygame.display.update()
 
         # 一定のフレームレートにする

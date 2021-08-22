@@ -19,22 +19,20 @@ def main():
         SURFACE.fill((255, 255, 255))
 
         #赤(塗りつぶし)
-        pygame.draw.rect(SURFACE, (255, 0, 0), (10, 20, 100, 50))
+        pygame.draw.circle(SURFACE, (255, 0, 0), (50, 50), 20)
 
         #赤
-        pygame.draw.rect(SURFACE, (0, 255, 0), ((100, 80), (80, 50)))
+        pygame.draw.circle(SURFACE, (255, 0, 0), (150, 50), 20, 10)
 
-        #緑
-        pygame.draw.rect(SURFACE, (0, 255, 0), ((100, 80), (80, 50)))
+        #緑 radius = 10
+        pygame.draw.circle(SURFACE, (0, 255, 0), (50, 150), 10)
 
-        #青
-        rect0 = Rect(200, 60, 140, 80)
-        pygame.draw.rect(SURFACE, (0, 0, 255), rect0)
+        #緑 radius = 20
+        pygame.draw.circle(SURFACE, (0, 255, 0), (150, 150), 20)
 
-        #黄
-        rect1 = Rect((30, 160), (100, 50))
-        pygame.draw.rect(SURFACE, (255, 255, 0), rect1)
-        
+        # 緑 radius = 30
+        pygame.draw.circle(SURFACE, (0, 255, 0), (250, 150), 30)
+
         pygame.display.update()
 
         # 一定のフレームレートにする

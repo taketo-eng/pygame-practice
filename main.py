@@ -1,6 +1,7 @@
 import sys
 import pygame
-from pygame.locals import QUIT, MOUSEBUTTONDOWN
+from pygame.locals import QUIT,\
+    MOUSEBUTTONDOWN, MOUSEMOTION, MOUSEBUTTONUP
 
 pygame.init()
 
@@ -12,28 +13,32 @@ FPSCLOCK = pygame.time.Clock()
 def main():
     ''' main routine '''
     mousepos = []
+    mousedown = False
 
     while True:
-        SURFACE.fill((255, 255, 255))
 
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == MOUSEBUTTONDOWN:
-                mousepos.append(event.pos)
+                mousedown = True
+            elif event.type == MOUSEMOTION:
+                if mousedown:
+                    mousepos.append(event.pos)
+            elif event.type == MOUSEBUTTONUP:
+                mousedown = False
+                mousepos.clear()
 
+        SURFACE.fill((255, 255, 255))
 
-
-        for i, j in mousepos:
-            pygame.draw.circle(SURFACE, (0, 255, 0), (i, j), 5)
-            
-
+        if len(mousepos) > 1:
+            pygame.draw.lines(SURFACE, (255, 0, 0),
+                              False, mousepos)
 
         pygame.display.update()
-
         # 一定のフレームレートにする
-        FPSCLOCK.tick(30)
+        FPSCLOCK.tick(144)
 
 if __name__ == '__main__':
     main()

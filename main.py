@@ -28,8 +28,10 @@ def main():
                 pygame.quit()
                 sys.exit()
             elif event.type == KEYDOWN:
-                if event.type == K_LEFT:
+                if event.key == K_LEFT:
                     pos_x -= 5
+                elif event.key == K_RIGHT:
+                    pos_x += 5
 
         SURFACE.fill((0, 0, 0))
 

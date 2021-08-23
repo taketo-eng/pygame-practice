@@ -5,31 +5,34 @@ from pygame.locals import QUIT
 pygame.init()
 
 #ウィンドウの大きさ
-SURFACE = pygame.display.set_mode((400, 300))
+SURFACE = pygame.display.set_mode((400, 200))
 # 一定のフレームレートにする (オブジェクト生成)
 FPSCLOCK = pygame.time.Clock()
 
 def main():
     ''' main routine '''
-    logo = pygame.image.load('images/pythonlogo.jpg')
+    sysfont = pygame.font.SysFont(None, 72)
+    message = sysfont.render('Hello Python', True, (0, 128, 128))
+    message_rect = message.get_rect()
+
     theta = 0
+    scale = 1
 
     while True:
-        for event in pygame.event.get(QUIT):
-            pygame.quit()
-            sys.exit()
-
-        # theta += 1 数が膨大になるのはいやだから 0-360の範囲に収めた
-        theta = (theta + 1) % 360
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
 
         SURFACE.fill((255, 255, 255))
 
-        new_logo = pygame.transform.rotate(logo, theta)
+        theta = (theta + 5) % 360
+        scale = (theta % 360) / 180
+        tmp_msg = pygame.transform.rotozoom(message, theta, scale)
+        tmp_rect = tmp_msg.get_rect()
+        tmp_rect.center = (200, 150)
+        SURFACE.blit(tmp_msg, tmp_rect)
 
-        rect = new_logo.get_rect()
-        # 中心を設定
-        rect.center = (200, 150)
-        SURFACE.blit(new_logo, rect)
 
         pygame.display.update()
 

@@ -10,7 +10,7 @@ FPSCLOCK = pygame.time.Clock()
 
 def main():
     ''' main routine '''
-    logo = pygame.image.load('images/ball.png')
+    logo = pygame.image.load('images/pythonlogo.jpg')
 
     while True:
         for event in pygame.event.get():

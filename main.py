@@ -1,37 +1,33 @@
 import sys
 import pygame
-from pygame.locals import QUIT
+from pygame.locals import QUIT, MOUSEBUTTONDOWN
 
 pygame.init()
 
 #ウィンドウの大きさ
-SURFACE = pygame.display.set_mode((400, 200))
+SURFACE = pygame.display.set_mode((400, 300))
 # 一定のフレームレートにする (オブジェクト生成)
 FPSCLOCK = pygame.time.Clock()
 
 def main():
     ''' main routine '''
-    sysfont = pygame.font.SysFont(None, 72)
-    message = sysfont.render('Hello Python', True, (0, 128, 128))
-    message_rect = message.get_rect()
-
-    theta = 0
-    scale = 1
+    mousepos = []
 
     while True:
+        SURFACE.fill((255, 255, 255))
+
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == MOUSEBUTTONDOWN:
+                mousepos.append(event.pos)
 
-        SURFACE.fill((255, 255, 255))
 
-        theta = (theta + 5) % 360
-        scale = (theta % 360) / 180
-        tmp_msg = pygame.transform.rotozoom(message, theta, scale)
-        tmp_rect = tmp_msg.get_rect()
-        tmp_rect.center = (200, 150)
-        SURFACE.blit(tmp_msg, tmp_rect)
+
+        for i, j in mousepos:
+            pygame.draw.circle(SURFACE, (0, 255, 0), (i, j), 5)
+            
 
 
         pygame.display.update()
